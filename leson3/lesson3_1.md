@@ -18,3 +18,9 @@ CREATE TABLE IF NOT EXISTS student(
     major VARCHAR(20) UNIQUE
 );
 ```
+
+##刪除一個student的資料表drop atble
+
+```sql
+DROP TABLE IF EXISTS student;
+```
