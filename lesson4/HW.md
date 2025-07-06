@@ -119,7 +119,24 @@ ORDER BY 每百萬人確診數 DESC;
 ##10.台灣哪個月死亡人數最多人
 
 ```sql
+ALTER TABLE world
+ALTER COLUMN 日期 TYPE DATE
+USING 日期::DATE;
 
+SELECT 
+  TO_CHAR(DATE_TRUNC('month', 日期), 'YYYY-MM') AS 月份,
+  SUM(新增死亡數) AS 每月死亡人數
+FROM world
+WHERE 國家 = '台灣'
+GROUP BY DATE_TRUNC('month', 日期)
+ORDER BY 每月死亡人數 DESC
+LIMIT 1;
 ```
+| 月份 |每月死亡人數 | 
+| --- | --- |
+| 2022-06 | 4,396 | 
+
+
+
 
 
