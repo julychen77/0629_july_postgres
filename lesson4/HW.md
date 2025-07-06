@@ -34,7 +34,26 @@ WHERE 日期 BETWEEN '2020-01-01' AND '2020-12-31';
 ```sql
 SELECT 國家, MAX(總死亡數) AS 各國總死亡數
 FROM world
-WHERE 國家 LIKE '阿%' AND 各國總死亡數 > 10000
+WHERE 國家 LIKE '阿%'
 GROUP BY 國家
-ORDER BY 各國總死亡數 DESC;
+HAVING MAX(總死亡數) > 10000;
 ```
+
+| 阿根廷 | 備註 |
+| --- | --- |
+| 129,109 | 阿字頭的國家死亡人數超過1萬的國家 |
+
+##4.查詢哪個國家總確診數最多
+
+```sql
+SELECT 國家, MAX(總確診數) AS 各國總確診數
+FROM world
+WHERE 國家 <> '全球'
+GROUP BY 國家
+ORDER BY 各國總確診數 DESC
+LIMIT 1;
+```
+| 總確診數最多的國家 | 總確診數 |
+| --- | --- |
+| 美國 | 88,263,393 |
+
