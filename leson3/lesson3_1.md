@@ -44,3 +44,56 @@ INSERT INTO student (name, major)
 VALUES ('小柱', '生物'),('信忠', '英語');
 
 ```
+##取得資料基本語法
+```sql
+SELECT 
+  select_list 
+FROM 
+  table_name 
+WHERE 
+  condition 
+ORDER BY 
+  sort_expression;
+```  
+```sql
+SELECT student_id, name,major  
+FROM student;
+
+SELECT * 
+FROM student
+ORDER BY student_id ASC;
+
+SELECT * 
+FROM student
+ORDER BY student_id DESC;
+
+
+INSERT INTO student (name, major)
+VALUES ('呂育均', '歷史');
+
+INSERT INTO student (name, major)
+VALUES ('小柱', '生物'),('信忠', '英語');
+
+INSERT INTO student (name, major)
+VALUES ('呂育君', '歷史');
+
+SELECT student_id, name,major  
+FROM student;
+
+SELECT * 
+FROM student
+where name='信忠';
+
+SELECT * 
+FROM student
+ORDER BY student_id ASC;
+
+SELECT * 
+FROM student
+ORDER BY student_id DESC;
+
+SELECT * 
+FROM student
+ORDER BY student_id desc
+limit 3;
+``` 
