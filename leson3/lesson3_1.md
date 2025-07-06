@@ -9,6 +9,7 @@ CREATE TABLE [IF NOT EXISTS] table_name (
    table_constraints
 );
 ```
+
 ##建立一個student的資料表
 
 ```sql
