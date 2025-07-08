@@ -151,3 +151,46 @@ LIMIT 1;
 | --- | --- |
 | 2021-01 | 835,930 | 
 
+##12.多明尼加確診數有多少?
+
+```sql
+SELECT 
+  國家,
+  MAX(總確診數) AS 確診數
+FROM world
+WHERE 國家 = '多明尼加'
+GROUP BY 國家;
+```
+| 國家 |確診數 | 
+| --- | --- |
+| 多明尼加 | 613,628 | 
+
+##13.查各國總死亡數佔確診數比例
+
+```sql
+SELECT 
+  國家,
+  ROUND(CASE 
+      WHEN MAX(總確診數) = 0 OR MAX(總確診數) IS NULL THEN NULL
+      ELSE MAX(總死亡數) *100 / MAX(總確診數) END  ,3) AS 總死亡數佔確診數比率
+FROM world
+GROUP BY 國家
+ORDER BY 總死亡數佔確診數比率 DESC;
+```
+| 國家 |總死亡數佔確診數比率 | 
+| --- | --- |
+| 北韓 | 600% | 
+
+##14.查詢哪個國家總確診數最少
+
+```sql
+SELECT 
+  國家, MAX(總確診數) AS 最少總確診數
+FROM world
+GROUP BY 國家
+ORDER BY 最少總確診數
+LIMIT 10;
+ ```
+| 國家 |最少總確診數 | 
+| --- | --- |
+| 波多黎各 | 0 | 
