@@ -1,13 +1,13 @@
+
 {
-	"servers": {
-	"postgres": {
-    "command": "npx",
-    "args": [
+    "servers": {
+        "vscode_postgres": {
+        "command": "npx",
+        "args": [
         "-y",
         "@modelcontextprotocol/server-postgres",
         "postgresql://postgres:raspberry@host.docker.internal:5432/postgres"
       ]
     }
-	},
-	"inputs": []
+    },
 }
