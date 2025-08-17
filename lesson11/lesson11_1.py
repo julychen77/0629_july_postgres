@@ -16,13 +16,13 @@ st.subheader("2023年進出站人數顯示")
 @st.cache_resource
 def get_querys():
     """取得車站資料"""
-    return datasource.get_query()
+    return datasource.get_stations()
 
 stations= get_querys()
 if stations is None:
     st.error("check")
     st.stop()
-    
+
 station = st.sidebar.selectbox(
     "請選擇車站",
     stations,
