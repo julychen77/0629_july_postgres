@@ -25,3 +25,5 @@ if __name__ == "__main__":
 
 # if __name__ == "__main__":
 #     main()
+
+#在終端機執行streamlit run main.py
