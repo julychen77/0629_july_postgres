@@ -34,6 +34,30 @@ if choice == "其他":
     )
 else:
     station = choice
+# 取得可選日期範圍，並在 sidebar 顯示只能在此範圍內的日期區間選擇器
+    date_window = get_date_range()
+    if date_window is None:
+        st.error("無法取得日期範圍，請稍後再試。")
+        st.stop()
+
+    try:
+        min_date = pd.to_datetime(date_window[0]).date()
+        max_date = pd.to_datetime(date_window[1]).date()
+    except Exception:
+        st.error("日期格式錯誤，請聯絡管理員。")
+        st.stop()
+
+    selected_range = st.sidebar.date_input(
+        "請選擇日期區間",
+        value=(min_date, max_date),
+        min_value=min_date,
+        max_value=max_date,
+    )
+
+    if isinstance(selected_range, tuple) and len(selected_range) == 2:
+        start_date, end_date = selected_range
+    else:
+        start_date = end_date = selected_range
 
 st.subheader("2023年"+ station + "站進出站人數顯示")
 date_range = get_date_range()
@@ -41,7 +65,10 @@ if date_range is None:
     st.error("無法取得日期範圍，請稍後再試。")
     st.stop()
 
-# st.write("您選擇的車站:", station)
-st.write("日期範圍:", date_range[0], "至", date_range[1])
+try:
+    st.write("您選擇的日期區間：", start_date.strftime("%Y-%m-%d"), "至", end_date.strftime("%Y-%m-%d"))
+except Exception:
+    st.write("尚未選擇或無法解析日期區間")
+st.write("日期範圍:", min_date, "至", max_date)
 
 
